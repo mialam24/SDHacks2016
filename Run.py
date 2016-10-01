@@ -44,9 +44,10 @@ while True:
 					#sendMessage(s,"how about no")
 					break
 			if "*liquidslam" in line:
-				sentence = cmdSillySentence()
+			        sentence = cmdSillySentence()
 				if sentence:
 					print("sentence printed")
+					exit()
 					#sendMessage(s,sentence)
 				else:
 					print("kappa dappa")

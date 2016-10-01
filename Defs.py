@@ -104,7 +104,6 @@ def checkType(word, wtype):
 def cmdSillySentence():
 	global index
 	global sentence 
-	sentence="the"
 	count = 0
 	max_count = len(queue)
 	while(count<6):
@@ -115,8 +114,8 @@ def cmdSillySentence():
 		count+=1
 		message=queue.popleft()
 		tempWord=max(wordDict,key=wordDict.get)
-		sentence+=" "+tempWord
-		wordDict[tempWord]*=0.6
+		sentence+=" "+ "|" + tempWord
+		del(wordDict[tempWord])
 		#findWordType(message,order[index])
 		queue.append(message)
 	print("-------->" + sentence)
