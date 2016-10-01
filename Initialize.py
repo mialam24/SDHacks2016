@@ -11,7 +11,7 @@ def joinRoom(s):
 		for line in temp:
 			print(line)
 			Loading = loadingComplete(line)
-	sendMessage(s, "Successfully joined chat")
+	sendMessage(s, "Hello!")
 	
 def loadingComplete(line):
 	if("End of /NAMES list" in line):
