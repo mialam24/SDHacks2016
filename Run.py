@@ -47,6 +47,7 @@ while True:
 			        sentence = cmdSillySentence()
 				if sentence:
 					print("sentence printed")
+					sendMessage(s, sentence)
 					exit()
 					#sendMessage(s,sentence)
 				else:

@@ -1,5 +1,6 @@
-import string, threading
+import string, threading, random
 
+from templates import *
 from collections import deque
 
 queue=deque([], maxlen=30)
@@ -103,21 +104,26 @@ def checkType(word, wtype):
 # Do the cool thing (puts smaller functions together)
 def cmdSillySentence():
 	global index
-	global sentence 
-	count = 0
-	max_count = len(queue)
-	while(count<6):
-		if(count == max_count):
-			print("not enough souls")
-			print("--------" + sentence)
-			return ""
-		count+=1
-		message=queue.popleft()
-		tempWord=max(wordDict,key=wordDict.get)
-		sentence+=" "+ "|" + tempWord
-		del(wordDict[tempWord])
-		#findWordType(message,order[index])
-		queue.append(message)
+	global sentence
+	global madlib_list
+	global chatKey
+
+	sentence = ""
+	message=queue.popleft()
+	
+	mad=random.choice(madlib_list)
+	madWords=mad.split()
+	
+	for word in madWords:
+		if chatKey in word:
+			tempWord=max(wordDict,key=wordDict.get)
+			sentence+=" " + tempWord
+			del(wordDict[tempWord])
+		else:
+			sentence+=" " + word
+
+	#findWordType(message,order[index])
+	queue.append(message)
 	print("-------->" + sentence)
 	wordDict.clear()
 	index=0
