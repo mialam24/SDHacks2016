@@ -2,11 +2,12 @@ import string, threading
 
 from collections import deque
 
-queue=deque([], maxlen=100)
+queue=deque([], maxlen=30)
 sentence=""
 
 wordDict = {}
-order=["noun", "adverb", "verb", "adjective","noun"]
+# order=["noun", "adverb", "verb", "adjective", "noun", "chat"]
+order=["chat", "chat", "chat", "chat", "chat", "chat"]
 index=0
 
 def getUser(line):
@@ -61,7 +62,20 @@ def createDict():
 # Fills queue with messages. Once filled pushes and pops.
 def fillQueue(msg):
 	queue.append(msg)
-	print("added "+msg)
+
+def addNew(msg):
+	global wordDict
+	words = msg.split()
+	for word in words:
+		try:
+			if (wordDict[word]):
+				print("found word")
+				wordDict[word.lower()] += 1
+		except Exception, e:
+			print(word+" not found")
+			if(len(word) >= 3 and len(word) <10):
+				wordDict[word.lower()] = 1
+				print(word + " added")
 
 # Find out if word of "type" exists in message
 def findWordType(msg, wtype):
@@ -69,8 +83,9 @@ def findWordType(msg, wtype):
 	global index
 	words = msg.split()
 	for word in words:
-		if (checkType(word, wtype)):
-			sentence+=" "+ word
+		
+		if (checkType(word.lower(), wtype)):
+			sentence+=" "+ word.lower()
 			index+=1
 			return
 # Check if word is of type
@@ -83,6 +98,7 @@ def checkType(word, wtype):
 			return False
 	except Exception, e:
 		print(word+" not found")
+		
 
 # Do the cool thing (puts smaller functions together)
 def cmdSillySentence():
@@ -91,28 +107,17 @@ def cmdSillySentence():
 	sentence=""
 	count = 0
 	max_count = len(queue)
-	while(index<5):
+	while(index<6):
 		if(count == max_count):
+			print("not enough souls")
+			print("--------" + sentence)
 			return ""
 		count+=1
 		message=queue.popleft()
-		findWordType(message,order[index])
+		sentence+=" "+max(wordDict,key=wordDict.get)
+		#findWordType(message,order[index])
 		queue.append(message)
-	print(sentence)
+	print("-------->" + sentence)
 
 	index=0
 	return sentence
-
-# Main
-# 	var:Queue
-#	var:Dict;
-#	createDict;
-#	while keep getting messages
-#		fillQueue
-#		If cmd has been made
-#			CmdSillySentence
-#				var:Sentence
-#					Loop while sentence not complete
-#						findWordType
-#							checkType
-#					If sentence not long enough: print out "you nub. use words"
