@@ -1,5 +1,5 @@
-HOST = "irc.twitch.tv"
+HOST = "irc.chat.twitch.tv"
 PORT = 6667
-PASS = "oauth:jhpg67jev64v6v7qzl9u2qz3uol01n"
-IDENT = "nida_bot"
-CHANNEL = "bad_nidalee"
+PASS = "oauth:hssaddo4gw13ukg61nxcst5e3uk0yx"
+IDENT = "test_bot1043"
+CHANNEL = "test1043"
