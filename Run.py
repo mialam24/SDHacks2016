@@ -1,5 +1,5 @@
-import string
-from Read import getUser, getMessage
+import string, sys
+from Read import getUser, getMessage, PONG
 from Socket import openSocket, sendMessage
 from Initialize import joinRoom
 
@@ -14,9 +14,14 @@ while True:
 		
 		for line in temp:
 			print(line)
-			if "PING" in line:
-				s.send(line.replace("PING", "PONG"))
+			if "*ping" == line:
+				sendMessage(s,"PONG!")
 				break
+			if "PING" in line:
+				PONG(s);
+				#s.send(line.replace("PING", "PONG"))
+				break
+			
 			user = getUser(line)
 			message = getMessage(line)
 			print user + " typed :" + message

@@ -1,5 +1,5 @@
 HOST = "irc.chat.twitch.tv"
 PORT = 6667
-PASS = "oauth:c24mow6fqu431qh5g5afzciefiyydj"
-IDENT = "lumilumiboot"
-CHANNEL = "lumilumi24"
+PASS = "oauth:0gkodeun2n80ksbbuv97wy42ifsxlv"
+IDENT = "z03hboot"
+CHANNEL = "zo3h"
