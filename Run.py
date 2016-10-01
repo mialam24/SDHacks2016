@@ -21,8 +21,8 @@ while True:
 
 			user = getUser(line)
 			message = getMessage(line)
-			#print user + ":" + message
-
+			print user + " " + message 
+			words=message.split()
 			#print(line)
 			if("*" not in message or user !="z03hboot"):
 				fillQueue(message)
@@ -32,12 +32,18 @@ while True:
 				#sendMessage(s,str(kappaCount)+ " kappas")
 				break
 			if "*ping" in  message:
-				#sendMessage(s,"PONG!")
+				try:
+					if (words[1] == "pong"):
+						sendMessage(s,"kappa")
+				except Exception, e:
+					print("no param")
+
+				sendMessage(s,"PONG!")
 				break
 			if "*shutdown" in message:
 				user = getUser(line);
 				if(user == "zo3h"):
-					#sendMessage(s,"GoodBye!")
+					sendMessage(s,"GoodBye!")
 					print("Exiting")
 					sys.exit();
 				else:
@@ -57,7 +63,4 @@ while True:
 				PONG(s)
 				#s.send(line.replace("PING", "PONG"))
 				break
-			
-			
-			
 			
