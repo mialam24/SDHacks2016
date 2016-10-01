@@ -21,42 +21,47 @@ while True:
 
 			user = getUser(line)
 			message = getMessage(line)
-			#print user + ":" + message
-
+			print user + " " + message 
+			words=message.split()
 			#print(line)
-			if("*" not in message or user =="z03hboot"):
+			if("*" not in message or user !="z03hboot"):
 				fillQueue(message)
 				addNew(message)
-			if "Kappa" in  line:
+			if "Kappa" in  message:
 				kappaCount+=1
 				#sendMessage(s,str(kappaCount)+ " kappas")
 				break
-			if "*ping" in  line:
-				#sendMessage(s,"PONG!")
+			if "*ping" in  message:
+				try:
+					if (words[1] == "pong"):
+						sendMessage(s,"kappa")
+				except Exception, e:
+					print("no param")
+
+				sendMessage(s,"PONG!")
 				break
-			if "*shutdown" in line:
+			if "*shutdown" in message:
 				user = getUser(line);
 				if(user == "zo3h"):
-					#sendMessage(s,"GoodBye!")
+					sendMessage(s,"GoodBye!")
 					print("Exiting")
 					sys.exit();
 				else:
 					#sendMessage(s,"how about no")
 					break
-			if "*liquidslam" in line:
-				sentence = cmdSillySentence()
+			if "*liquidslam" in message:
+			        sentence = cmdSillySentence()
 				if sentence:
 					print("sentence printed")
+					sendMessage(s, sentence)
+					exit()
 					#sendMessage(s,sentence)
 				else:
 					print("kappa dappa")
 					#sendMessage(s,"Not enough souls Kappa")	
 				break
-			if "PING" in line:
+			if "PING" in message:
 				PONG(s)
 				#s.send(line.replace("PING", "PONG"))
 				break
-			
-			
-			
 			
