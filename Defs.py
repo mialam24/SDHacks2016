@@ -7,7 +7,7 @@ sentence=""
 
 wordDict = {}
 # order=["noun", "adverb", "verb", "adjective", "noun", "chat"]
-order=["chat", "chat", "chat", "chat", "chat", "chat"]
+# order=["chat", "chat", "chat", "chat", "chat", "chat"]
 index=0
 
 def getUser(line):
@@ -104,20 +104,22 @@ def checkType(word, wtype):
 def cmdSillySentence():
 	global index
 	global sentence 
-	sentence=""
+	sentence="the"
 	count = 0
 	max_count = len(queue)
-	while(index<6):
+	while(count<6):
 		if(count == max_count):
 			print("not enough souls")
 			print("--------" + sentence)
 			return ""
 		count+=1
 		message=queue.popleft()
-		sentence+=" "+max(wordDict,key=wordDict.get)
+		tempWord=max(wordDict,key=wordDict.get)
+		sentence+=" "+tempWord
+		wordDict[tempWord]*=0.6
 		#findWordType(message,order[index])
 		queue.append(message)
 	print("-------->" + sentence)
-
+	wordDict.clear()
 	index=0
 	return sentence
