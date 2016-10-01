@@ -16,14 +16,12 @@ while True:
 		temp = string.split(readbuffer, "\n")
 		readbuffer = temp.pop()
 
-		
+
 		for line in temp:
 
 			user = getUser(line)
 			message = getMessage(line)
-			print user + " " + message 
 			words=message.split()
-			#print(line)
 			if("*" not in message or user !="z03hboot"):
 				fillQueue(message)
 				addNew(message)
@@ -33,10 +31,10 @@ while True:
 				break
 			if "*ping" in  message:
 				try:
-					if (words[1] == "pong"):
-						sendMessage(s,"kappa")
+				    if (words[1] == "pong"):
+					sendMessage(s,"kappa")
 				except Exception, e:
-					print("no param")
+				    print("no param")
 
 				sendMessage(s,"PONG!")
 				break
@@ -52,16 +50,15 @@ while True:
 			if "*liquidslam" in message:
 			        sentence = cmdSillySentence()
 				if sentence:
-					print("sentence printed")
 					sendMessage(s, sentence)
-					exit()
-					#sendMessage(s,sentence)
+                                        print("sentence printed:" + sentence)
+					#exit()
 				else:
-					print("kappa dappa")
-					#sendMessage(s,"Not enough souls Kappa")	
+					print("Need more words!!!")
+					#sendMessage(s,"Not enough souls Kappa")
 				break
 			if "PING" in message:
 				PONG(s)
 				#s.send(line.replace("PING", "PONG"))
 				break
-			
+
