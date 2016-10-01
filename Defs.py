@@ -1,5 +1,13 @@
-import string
-import threading
+import string, threading
+
+from collections import deque
+
+queue=deque([], maxlen=100)
+sentence=""
+
+wordDict = {}
+order=["noun", "adverb", "verb", "adjective","noun"]
+index=0
 
 def getUser(line):
 	separate = line.split(":", 2)
@@ -10,24 +18,90 @@ def getMessage(line):
 	message = separate[2]
 	return message
 def PONG(s):
-      	s.send(bytes('PONG :tmi.twitch.tv\r\n'))
-      	print("PONG SENT!")
-      	threading.Timer(300, PONG).start()
+	s.send(bytes('PONG :tmi.twitch.tv\r\n'))
+	print("PONG SENT!")
+	threading.Timer(300, PONG).start()
 
 # Creates dictionaries
-def createDict(textFile):
+def createDict():
+	global wordDict
+	f = open('dictAdjs.txt' , 'r')
+	str = f.readline()
+	while str :
+		str = str[:-1]
+		wordDict[str] = 'adjective'
+		str = f.readline()
+	f.close()
+
+	f = open('dictAdvs.txt' , 'r')
+	str = f.readline()
+	while str :
+		str = str[:-1]
+		wordDict[str] = 'adverb'
+		str = f.readline()
+	f.close()
+	
+	f = open('dictVerbs.txt' , 'r')
+	str = f.readline()
+	while str :
+		str = str[:-1]
+		wordDict[str] = 'verb'
+		str = f.readline()
+	f.close()
+
+	f = open('dictNouns.txt' , 'r')
+	str = f.readline()
+	while str :
+		str = str[:-1]
+		wordDict[str] = 'noun'
+		str = f.readline()
+	f.close()
+	print("Dictionary done :)")
 
 # Fills queue with messages. Once filled pushes and pops.
 def fillQueue(msg):
+	queue.append(msg)
+	print("added "+msg)
 
 # Find out if word of "type" exists in message
-def findWordType(msg, type):
-
+def findWordType(msg, wtype):
+	global sentence
+	global index
+	words = msg.split()
+	for word in words:
+		if (checkType(word, wtype)):
+			sentence+=" "+ word
+			index+=1
+			return
 # Check if word is of type
-def checkType(word, type):
+def checkType(word, wtype):
+	global wordDict
+	try:
+		if (wordDict[word] == wtype):
+			return True
+		else:
+			return False
+	except Exception, e:
+		print(word+" not found")
 
 # Do the cool thing (puts smaller functions together)
-def cmdSillySentence(msgQueue):
+def cmdSillySentence():
+	global index
+	global sentence 
+	sentence=""
+	count = 0
+	max_count = len(queue)
+	while(index<5):
+		if(count == max_count):
+			return ""
+		count+=1
+		message=queue.popleft()
+		findWordType(message,order[index])
+		queue.append(message)
+	print(sentence)
+
+	index=0
+	return sentence
 
 # Main
 # 	var:Queue

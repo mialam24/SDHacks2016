@@ -1,20 +1,31 @@
 import string, sys
-from Read import getUser, getMessage, PONG
+
+from Defs import getUser, getMessage, PONG, fillQueue, cmdSillySentence,createDict
 from Socket import openSocket, sendMessage
 from Initialize import joinRoom
+
 
 s = openSocket()
 joinRoom(s)
 readbuffer = ""
 kappaCount=0
+createDict()
 
 while True:
 		readbuffer = readbuffer + s.recv(1024)
 		temp = string.split(readbuffer, "\n")
 		readbuffer = temp.pop()
 
+		
 		for line in temp:
+
+			user = getUser(line)
+			message = getMessage(line)
+			#print user + ":" + message
+
 			#print(line)
+			if("*" not in message):
+				fillQueue(message)
 			if "Kappa" in  line:
 				kappaCount+=1
 				#sendMessage(s,str(kappaCount)+ " kappas")
@@ -31,18 +42,18 @@ while True:
 				else:
 					#sendMessage(s,"how about no")
 					break
-			if "asdfl;aksjo" in line:
-				
+			if "*liquidslam" in line:
+				sentence = cmdSillySentence()
+				if sentence:
+					sendMessage(s,sentence)
+				else:
+					sendMessage(s,"Not enough souls Kappa")	
 				break
 			if "PING" in line:
-				PONG(s);
+				PONG(s)
 				#s.send(line.replace("PING", "PONG"))
 				break
 			
-			user = getUser(line)
-			message = getMessage(line)
-			print user + ":" + message
-			if "you suck" in message.lower():
-				#sendMessage(s, "No, you suck!")
-				break
+			
+			
 			
