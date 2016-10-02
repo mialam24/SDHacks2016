@@ -16,9 +16,13 @@ This is a Twitch chat bot that parses incoming Twitch messages and uses that to 
 # Overview:
 
 Def.py - Handles all the logic to parse Twitch messages
+
 Initialize.py - Connects to channel room
+
 Settings.py - Twitch IRC Authentication
+
 Socket.py - Python Socket Connections
+
 templates.py - Default Mad lib sentences
 
 # Prerequites:
