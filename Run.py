@@ -1,5 +1,5 @@
 import string, sys
-
+from os import execv
 from Defs import *
 from Socket import openSocket, sendMessage
 from Initialize import joinRoom
@@ -26,6 +26,11 @@ while True:
 			if("*" not in message or user !="z03hboot"):
 				fillQueue(message)
 				# addNew(message) #####
+			if("*restart" in message):
+				if(user=="zo3h"):
+					print("Redo")
+					sendMessage(s,"GivePLZ Restarting TakeNRG")
+					execv(sys.executable, ['python'] + sys.argv)	
 			if "Kappa" in  message:
 				kappaCount+=1
 				#sendMessage(s,str(kappaCount)+ " kappas")
