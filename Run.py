@@ -29,28 +29,15 @@ while True:
 			if "Kappa" in  message:
 				kappaCount+=1
 				#sendMessage(s,str(kappaCount)+ " kappas")
-			if("*" not in message or user !="z03hboot"):
+			if("!" not in message or user !="z03hboot"):
 				fillQueue(message)
 				# addNew(message) #####
-			if("*restart" in message):
+			if("!restart" in message):
 				if(user=="zo3h"):
 					print("Redo")
 					sendMessage(s,"GivePLZ Restarting TakeNRG")
 					execv(sys.executable, ['python'] + sys.argv)
-			if "Kappa" in  message:
-				kappaCount+=1
-				#sendMessage(s,str(kappaCount)+ " kappas")
-				break
-			if "*ping" in  message:
-				try:
-				    if (words[1] == "pong"):
-					sendMessage(s,"kappa")
-				except Exception, e:
-				    print("no param")
-
-				sendMessage(s,"PONG!")
-				break
-			if "*shutdown" in message:
+			if "!shutdown" in message:
 				user = getUser(line);
 				if(user == "zo3h"):
 					sendMessage(s,"GoodBye!")
@@ -59,7 +46,7 @@ while True:
 				else:
 					#sendMessage(s,"how about no")
 					break
-			if "*ping" in  message:
+			if "!ping" in  message:
 				try:
 				    if (words[1]):
 						sendMessage(s,"pong "+words[1])
@@ -69,7 +56,7 @@ while True:
 
 				sendMessage(s,"PONG!")
 				break
-			if "*liquidslam" in message:
+			if "!liquidslam" in message:
 			        sentence = cmdSillySentence()
 				if sentence:
 					sendMessage(s, sentence)
@@ -78,7 +65,7 @@ while True:
 					print("Need more words!!!")
 					#sendMessage(s,"Not enough souls Kappa")
 				break
-			if ("*Kappa" in message):
+			if ("!Kappa" in message):
 					sendMessage(s,kappaCount+" kappas")
 
 

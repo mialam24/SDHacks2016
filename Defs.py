@@ -76,8 +76,6 @@ def cmdSillySentence():
 				return ""
 			tempWord=max(wordDict,key=wordDict.get)
 			sentence+=" " + tempWord
-			chatWords.append(tempWord)
-			chatVals.append(wordDict[tempWord])
 			del(wordDict[tempWord])
 		else:
 			sentence+=" " + word
