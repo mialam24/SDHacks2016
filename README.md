@@ -45,7 +45,7 @@ templates.py - Default Mad lib sentences
 
 `*shutdown - shutdowns bot`
 
-`msgrecord - records frequency of messages in a given interval (seconds)`
+`*msgrecord - records frequency of messages in a given interval (seconds)`
 
 **REMEMBER TO**: change the pass, ident, and channel values in
 settings.py!
