@@ -13,6 +13,8 @@ This is a Twitch chat bot that parses incoming Twitch messages and uses that to 
 
 <a href="https://twitchemotes.com/" target="_blank">[List of default Twitch emotes]</a>
 
+Another feature of this bot is the ability to record the number of messages in chat in certain time intervals. This can than be used to determine when the stream is popping off: to record and find highlights quicker and easier.
+
 ## Overview:
 
 Def.py - Handles all the logic to parse Twitch messages
@@ -37,11 +39,13 @@ templates.py - Default Mad lib sentences
 
 `*liquidslam - generates Mad Lib`
 
-`*restart - retarts bot`
+`*restart - restarts bot`
 
 `*ping - returns PONG`
 
 `*shutdown - shutdowns bot`
+
+`*msgrecord - records frequency of messages in a given interval (seconds)`
 
 **REMEMBER TO**: change the pass, ident, and channel values in
 settings.py!
