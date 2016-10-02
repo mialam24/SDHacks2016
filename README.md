@@ -36,8 +36,11 @@ templates.py - Default Mad lib sentences
 ## Commands list:
 `
 *liquidslam - generates Mad Lib
+
 *restart - retarts bot
-*ping - returns PONG 
+
+*ping - returns PONG
+
 *shutdown - shutdowns bot
 `
 
