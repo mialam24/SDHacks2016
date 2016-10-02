@@ -23,7 +23,7 @@ def getMessage(line):
 		message = separate[2]
 		return message
 	except Exception, e:
-		print("error condition")
+		#print("error condition")
 		return " "
 def PONG(s):
 	s.send(bytes('PONG :tmi.twitch.tv\r\n'))

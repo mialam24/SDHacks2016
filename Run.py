@@ -135,10 +135,14 @@ while True:
 					tempMsgCount=0
 					tmr.start()
 			if("!help" in message):
-				sendMessage(s,"help restart red ping liquidslam Kappa shutdown")
+				sendMessage(s,"!help !restart !red !ping !liquidslam !Kappa !shutdown")
 
 			if "!red" in message:
-				sendMessage(s, getRed(GAME))
+				try:
+					if (words[1]):
+						sendMessage(s, getRed(words[1]))
+				except Exception, e:
+					sendMessage(s, getRed(words[1]))
 
 			if "!ping" in  message:
 				try:
@@ -160,5 +164,5 @@ while True:
 					#sendMessage(s,"Not enough souls Kappa")
 				break
 			if ("!Kappa" in message):
-					sendMessage(s,kappaCount+" kappas")
+					sendMessage(s,str(kappaCount)+" kappas")
 
