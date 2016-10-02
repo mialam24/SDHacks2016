@@ -110,12 +110,13 @@ while True:
 						f=open(filename,'w')
 						for value in msgCount:
 							f.write(str((value+1)*RCRDINT)+" \t"+str(msgCount[value])+"\n")
+						f.close()
 					try:
 					 	if (words[1].lower()=="kappa"):
 					 		sendMessage(s,"Stop:  \t"+str(kappaCount)+" Kappas posted")
 					except Exception, e:
 					 	sendMessage(s,"Stop recording")
-					f.close()
+					
 					recording=False
 					interval=0
 					tempMsgCount=0
