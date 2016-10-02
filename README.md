@@ -9,11 +9,11 @@ Son Tang
 Jeffrey Phung
 
 ## Description: 
-This is a Twitch chat bot that parses incoming Twitch messages and uses that to create Mad Lib styled sentences that will display in Twitch chat. In addition to this, we have utilized the default Twitch emotes keywords. So if whenever a keyword is typed, the respective emote will display in the Mad Lib sentences.
+This is a Twitch chat bot that parses incoming Twitch messages and uses that to create Mad Lib styled sentences that will display in Twitch chat. In addition to this, we have utilized the default Twitch emotes keywords. So whenever a keyword is typed, the respective emote will display in the Mad Lib sentences.
 
 <a href="https://twitchemotes.com/" target="_blank">[List of default Twitch emotes]</a>
 
-Another feature of this bot is the ability to record the number of messages in chat in certain time intervals. This can than be used to determine when the stream is popping off: to record and find highlights quicker and easier.
+Another feature of this bot is the ability to record the number of messages in chat in certain time intervals. This can then be used to determine when the stream is popping off: to record and find highlights quicker and easier.
 
 ## Overview:
 
