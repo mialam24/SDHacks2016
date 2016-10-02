@@ -17,6 +17,8 @@ This is a Twitch chat bot that parses incoming Twitch messages and uses that to 
 
 Def.py - Handles all the logic to parse Twitch messages
 
+Run.py - the driver
+
 Initialize.py - Connects to channel room
 
 Settings.py - Twitch IRC Authentication
