@@ -37,19 +37,6 @@ while True:
 					print("Redo")
 					sendMessage(s,"GivePLZ Restarting TakeNRG")
 					execv(sys.executable, ['python'] + sys.argv)
-			if "Kappa" in  message:
-				kappaCount+=1
-				#sendMessage(s,str(kappaCount)+ " kappas")
-				break
-			if "*ping" in  message:
-				try:
-				    if (words[1] == "pong"):
-					sendMessage(s,"kappa")
-				except Exception, e:
-				    print("no param")
-
-				sendMessage(s,"PONG!")
-				break
 			if "*shutdown" in message:
 				user = getUser(line);
 				if(user == "zo3h"):
