@@ -131,7 +131,7 @@ while True:
 					sendMessage(s, sentence)
 					#exit()
 				else:
-					print("Need more words!!!")
+					sendMessage(s, "Need more words!!!")
 					#sendMessage(s,"Not enough souls Kappa")
 				break
 			if ("!Kappa" in message):
