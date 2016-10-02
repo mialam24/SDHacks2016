@@ -30,6 +30,9 @@ templates.py - Default Mad lib sentences
 # Prerequites:
 -Python 2.7.*
 
+# How to run:
+`python Run.py`
+
 **REMEMBER TO**: change the pass, ident, and channel values in
 settings.py!
 
