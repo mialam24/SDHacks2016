@@ -12,6 +12,7 @@ readbuffer = ""
 kappaCount=0
 interval=0
 tempMsgCount=0
+gameStarted=0
 recording=False
 msgCount={}
 createEmotes()
@@ -50,7 +51,6 @@ while True:
 		readbuffer = readbuffer + s.recv(1024)
 		temp = string.split(readbuffer, "\n")
 		readbuffer = temp.pop()
-
 
 		for line in temp:
 			if(recording):
@@ -110,18 +110,23 @@ while True:
 					tempMsgCount=0
 					tmr.start()
 
+			if "!red" in message:
+				sendMessage(s, "me me")
+				sendMessage(s, getRed(GAME))
+
 			if "!ping" in  message:
 				try:
-				    if (words[1]):
+					if (words[1]):
 						sendMessage(s,"pong "+words[1])
 						break
 				except Exception, e:
-				    print("no param")
+					print("no param")
+					break
 
 				sendMessage(s,"PONG!")
-				break
+
 			if "!liquidslam" in message:
-			        sentence = cmdSillySentence()
+				sentence = cmdSillySentence()
 				if sentence:
 					sendMessage(s, sentence)
 					#exit()

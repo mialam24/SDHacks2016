@@ -1,9 +1,12 @@
 import string, threading, random
+import praw # need to install
 
 from templates import *
 from collections import deque
+from Settings import GAME
 
 emotesFile = "emotes.txt"
+user_agent = "HaxEng Potato 0.1"
 
 queue=deque([], maxlen=50)
 
@@ -66,10 +69,10 @@ def cmdSillySentence():
 	q_len = len(queue)
 
 	while(q_len > 0):
-		message=queue.popleft() 
-		addNew(message) 
-		queue.append(message) 
-		q_len -= 1 
+		message=queue.popleft()
+		addNew(message)
+		queue.append(message)
+		q_len -= 1
 
 	mad=random.choice(madlib_list)
 	madWords=mad.split()
@@ -87,3 +90,16 @@ def cmdSillySentence():
 	print("-------->" + sentence)
 	wordDict.clear()
 	return sentence
+
+def getRed(game):
+	urlList = []
+	r = praw.Reddit(user_agent = user_agent)
+	subList = r.search_reddit_names(game)
+	if not subList:
+		return ""
+	subreddit = random.choice(subList)
+	for submission in subreddit.get_hot(limit = 27):
+		urlList.append(submission.permalink)
+	url = random.choice(urlList[2:26])
+	return url
+
