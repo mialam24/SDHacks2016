@@ -1,7 +1,7 @@
 import string, sys, threading, time
 from os import execv
 from Defs import *
-from Settings import RCRDINT
+from Settings import RCRDINT, IDENT, MODS
 from Socket import openSocket, sendMessage
 from Initialize import joinRoom
 
@@ -65,12 +65,12 @@ while True:
 			if "Kappa" in  message:
 				kappaCount+=1
 
-			if("!" not in message or user !="z03hboot"):
+			if("!" not in message or user !=IDENT):
 				fillQueue(message)
 				# addNew(message)
 
 			if("!restart" in message):
-				if(user=="zo3h"):
+				if(verifymod(user)):
 					#CHANGE HARDCODED NAME
 					print("Redo")
 					sendMessage(s,"GivePLZ Restarting TakeNRG")
@@ -78,7 +78,7 @@ while True:
 
 			if "!shutdown" in message:
 				user = getUser(line);
-				if(user == "zo3h"):
+				if(verifymod(user)):
 					sendMessage(s,"GoodBye!")
 					print("Exiting")
 					sys.exit();
@@ -86,7 +86,7 @@ while True:
 					#sendMessage(s,"how about no")
 					break
 
-			if ("!msgrecord" in message) and (user == "lumilumiboot"):
+			if ("!msgrecord" in message) and (verifymod(user)):
 				#TODO ABOVE SHOULD CHANGE HARDCODED NAME
 				if(recording):
 					tmr.stop()
@@ -112,6 +112,7 @@ while True:
 
 			if "!red" in message:
 				sendMessage(s, "me me")
+				time.sleep(1)
 				sendMessage(s, getRed(GAME))
 
 			if "!ping" in  message:
@@ -136,6 +137,12 @@ while True:
 				break
 			if ("!Kappa" in message):
 					sendMessage(s,kappaCount+" kappas")
+
+def verifymod(user):
+	for name in MODS:
+		if(user == name):
+			return True
+	return False
 
 
 
