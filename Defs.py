@@ -65,11 +65,11 @@ def cmdSillySentence():
 
 	q_len = len(queue)
 
-	while(q_len > 0):###########
-		message=queue.popleft() ###########
-		addNew(message) ###########
-		queue.append(message) ###########
-		q_len -= 1 ###########
+	while(q_len > 0):
+		message=queue.popleft() 
+		addNew(message) 
+		queue.append(message) 
+		q_len -= 1 
 
 	mad=random.choice(madlib_list)
 	madWords=mad.split()
