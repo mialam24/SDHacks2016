@@ -25,7 +25,7 @@ while True:
 			words=message.split()
 			if("*" not in message or user !="z03hboot"):
 				fillQueue(message)
-				# addNew(message)
+				# addNew(message) #####
 			if "Kappa" in  message:
 				kappaCount+=1
 				#sendMessage(s,str(kappaCount)+ " kappas")
