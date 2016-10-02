@@ -56,8 +56,6 @@ def cmdSillySentence():
 	global madlib_list
 	global chatKey
 	global wordDict
-	chatWords=[]
-	chatVals=[]
 
 	sentence = ""
 
@@ -84,10 +82,6 @@ def cmdSillySentence():
 		else:
 			sentence+=" " + word
 
-		for word in chatWords:
-			print(word + " ")
-		for val in chatVals:
-			print(val)
 	print("-------->" + sentence)
 	wordDict.clear()
 	return sentence

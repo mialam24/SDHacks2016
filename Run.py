@@ -30,7 +30,7 @@ while True:
 				if(user=="zo3h"):
 					print("Redo")
 					sendMessage(s,"GivePLZ Restarting TakeNRG")
-					execv(sys.executable, ['python'] + sys.argv)	
+					execv(sys.executable, ['python'] + sys.argv)
 			if "Kappa" in  message:
 				kappaCount+=1
 				#sendMessage(s,str(kappaCount)+ " kappas")
