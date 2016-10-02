@@ -1,6 +1,7 @@
 import string, sys, threading, time
 from os import execv
 from Defs import *
+from Settings import RCRDINT
 from Socket import openSocket, sendMessage
 from Initialize import joinRoom
 
@@ -27,9 +28,9 @@ class TimerClass(threading.Thread):
 		global msgCount
 		while not self.event.is_set():
 			#print str(self.count)+"s "+str(tempMsgCount)
-			if (self.count%5==0):
+			if (self.count%RCRDINT==0):
 				msgCount[interval]=tempMsgCount
-				print str((interval-1)*5)+"s to "+str(interval*5)+"s \t"+str(tempMsgCount)
+				print str((interval-1)*RCRDINT)+"s to "+str(interval*RCRDINT)+"s \t"+str(tempMsgCount)
 				interval+=1
 				tempMsgCount=0
 			self.count += 1
@@ -63,10 +64,10 @@ while True:
 
 			if "Kappa" in  message:
 				kappaCount+=1
-				
+
 			if("!" not in message or user !="z03hboot"):
 				fillQueue(message)
-				# addNew(message) 
+				# addNew(message)
 
 			if("!restart" in message):
 				if(user=="zo3h"):
@@ -85,25 +86,25 @@ while True:
 					#sendMessage(s,"how about no")
 					break
 
-			if ("!msgrecord" in message) and (user == "zo3h"):
+			if ("!msgrecord" in message) and (user == "lumilumiboot"):
 				#TODO ABOVE SHOULD CHANGE HARDCODED NAME
 				if(recording):
 					tmr.stop()
 					print("stop counting")
-					try:
-						if (words[1].lower()=="kappa"):
-							sendMessage(s,"Stop:  \t"+str(kappaCount)+" Kappas posted")
+					# try:
+					# 	if (words[1].lower()=="kappa"):
+					# 		sendMessage(s,"Stop:  \t"+str(kappaCount)+" Kappas posted")
 
-					except Exception, e:
-						sendMessage(s,"Stop recording")
+					# except Exception, e:
+					# 	sendMessage(s,"Stop recording")
 
 					recording=False
 					interval=0
 					tempMsgCount=0
-					
+
 				else:
 					print("starting msg count")
-					sendMessage(s,"Starting recording...")
+					# sendMessage(s,"Starting recording...")
 					recording=True
 					interval=0
 					tempMsgCount=0
