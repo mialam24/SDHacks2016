@@ -39,7 +39,7 @@ templates.py - Default Mad lib sentences
 
 `*liquidslam - generates Mad Lib`
 
-`*restart - retarts bot`
+`*restart - restarts bot`
 
 `*ping - returns PONG`
 
