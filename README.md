@@ -34,15 +34,11 @@ templates.py - Default Mad lib sentences
 `python Run.py`
 
 ## Commands list:
-`
-*liquidslam - generates Mad Lib
 
-*restart - retarts bot
-
-*ping - returns PONG
-
-*shutdown - shutdowns bot
-`
+`*liquidslam - generates Mad Lib`
+`*restart - retarts bot`
+`*ping - returns PONG`
+`*shutdown - shutdowns bot`
 
 **REMEMBER TO**: change the pass, ident, and channel values in
 settings.py!
