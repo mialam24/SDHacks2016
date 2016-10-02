@@ -1,5 +1,5 @@
 import string, threading, random
-#import praw # need to install
+import praw # need to install
 
 from templates import *
 from collections import deque

@@ -1,7 +1,7 @@
-import string, sys, threading, time
+import string, sys, threading, time, datetime
 from os import execv
 from Defs import *
-from Settings import RCRDINT, IDENT, MODS
+from Settings import RCRDINT, IDENT, MODS,SAVEMSG
 from Socket import openSocket, sendMessage
 from Initialize import joinRoom
 
@@ -15,6 +15,7 @@ tempMsgCount=0
 gameStarted=0
 recording=False
 msgCount={}
+maxCount=0
 createEmotes()
 
 class TimerClass(threading.Thread):
@@ -27,10 +28,15 @@ class TimerClass(threading.Thread):
 		global tempMsgCount
 		global interval
 		global msgCount
+		global maxCount
 		while not self.event.is_set():
 			#print str(self.count)+"s "+str(tempMsgCount)
 			if (self.count%RCRDINT==0):
 				msgCount[interval]=tempMsgCount
+
+				if(tempMsgCount > maxCount):
+					maxCount = tempMsgCount
+
 				print str((interval-1)*RCRDINT)+"s to "+str(interval*RCRDINT)+"s \t"+str(tempMsgCount)
 				interval+=1
 				tempMsgCount=0
@@ -45,7 +51,13 @@ class TimerClass(threading.Thread):
 		print("recorded "+str(self.count)+"s \t"+"total messages: "+str(total))
 		self.event.set()
 
-tmr = TimerClass()
+
+
+def verifymod(user):
+	for name in MODS:
+		if(user == name):
+			return True
+	return False
 
 while True:
 		readbuffer = readbuffer + s.recv(1024)
@@ -59,6 +71,7 @@ while True:
 			user = getUser(line)
 			message = getMessage(line)
 			words=message.split()
+
 			if "PING" in message:
 				PONG(s)
 
@@ -90,14 +103,19 @@ while True:
 				#TODO ABOVE SHOULD CHANGE HARDCODED NAME
 				if(recording):
 					tmr.stop()
+					
 					print("stop counting")
-					# try:
-					# 	if (words[1].lower()=="kappa"):
-					# 		sendMessage(s,"Stop:  \t"+str(kappaCount)+" Kappas posted")
-
-					# except Exception, e:
-					# 	sendMessage(s,"Stop recording")
-
+					if(SAVEMSG):
+						filename=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+						f=open(filename,'w')
+						for value in msgCount:
+							f.write(str((value+1)*RCRDINT)+" \t"+str(msgCount[value])+"\n")
+					try:
+					 	if (words[1].lower()=="kappa"):
+					 		sendMessage(s,"Stop:  \t"+str(kappaCount)+" Kappas posted")
+					except Exception, e:
+					 	sendMessage(s,"Stop recording")
+					f.close()
 					recording=False
 					interval=0
 					tempMsgCount=0
@@ -105,14 +123,21 @@ while True:
 				else:
 					print("starting msg count")
 					# sendMessage(s,"Starting recording...")
+					try:
+					 	if (words[1].lower()=="kappa"):
+							kappaCount=0					 
+					except Exception, e:
+					 	print("no kappas")
+
+					tmr = TimerClass()
 					recording=True
 					interval=0
 					tempMsgCount=0
 					tmr.start()
+			if("!help" in message):
+				sendMessage(s,"help restart red ping liquidslam Kappa shutdown")
 
 			if "!red" in message:
-				sendMessage(s, "me me")
-				time.sleep(1)
 				sendMessage(s, getRed(GAME))
 
 			if "!ping" in  message:
@@ -122,9 +147,8 @@ while True:
 						break
 				except Exception, e:
 					print("no param")
-					break
-
-				sendMessage(s,"PONG!")
+					sendMessage(s,"PONG!")
+			
 
 			if "!liquidslam" in message:
 				sentence = cmdSillySentence()
@@ -137,12 +161,4 @@ while True:
 				break
 			if ("!Kappa" in message):
 					sendMessage(s,kappaCount+" kappas")
-
-def verifymod(user):
-	for name in MODS:
-		if(user == name):
-			return True
-	return False
-
-
 
