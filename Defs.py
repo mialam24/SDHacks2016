@@ -5,7 +5,7 @@ from collections import deque
 
 emotesFile = "emotes.txt"
 
-queue=deque([], maxlen=100)
+queue=deque([], maxlen=50)
 
 wordDict = {}
 emotesList = []
@@ -16,8 +16,12 @@ def getUser(line):
 	return user
 def getMessage(line):
 	separate = line.split(":", 2)
-	message = separate[2]
-	return message
+	try:
+		message = separate[2]
+		return message
+	except Exception, e:
+		print("error condition")
+		return " "
 def PONG(s):
 	s.send(bytes('PONG :tmi.twitch.tv\r\n'))
 	threading.Timer(300, PONG).start()
