@@ -9,7 +9,8 @@ s = openSocket()
 joinRoom(s)
 readbuffer = ""
 kappaCount=0
-#createDict()
+
+createEmotes()
 
 while True:
 		readbuffer = readbuffer + s.recv(1024)
@@ -24,7 +25,7 @@ while True:
 			words=message.split()
 			if("*" not in message or user !="z03hboot"):
 				fillQueue(message)
-				addNew(message)
+				# addNew(message)
 			if "Kappa" in  message:
 				kappaCount+=1
 				#sendMessage(s,str(kappaCount)+ " kappas")
@@ -51,7 +52,6 @@ while True:
 			        sentence = cmdSillySentence()
 				if sentence:
 					sendMessage(s, sentence)
-                                        print("sentence printed:" + sentence)
 					#exit()
 				else:
 					print("Need more words!!!")
